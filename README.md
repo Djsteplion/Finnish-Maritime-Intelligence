@@ -6,7 +6,7 @@ A real-time maritime traffic intelligence dashboard built on **official Finnish 
 > Screenshots: 
 <img src="assets\Screenshot 2026-08-26 224729.png" alt="image showing half of the dashboard page" width="500">
 <img src="assets\Screenshot 2026-08-26 224832.png" alt="image showing the location of a selected vessel on the map" width="500">
-<img src="aassetsScreenshot 2026-08-26 224905.png" alt="Descriptive Alt Text" width="500">
+<img src="aassets\Screenshot 2026-08-26 224905.png" alt="Descriptive Alt Text" width="500">
 <img src="assets\Screenshot 2026-08-26 224940.png" alt="Descriptive Alt Text" width="500">
 
 

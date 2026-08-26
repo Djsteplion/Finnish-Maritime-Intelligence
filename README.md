@@ -37,7 +37,7 @@ The dashboard covers:
 | Tables | TanStack Table |
 | Data source | [Digitraffic Marine Traffic API](https://www.digitraffic.fi/en/marine-traffic/) — official Finnish gov't AIS feed (no API key required) |
 
-## Architecture notes (the part worth reading in a technical interview)
+## Architecture notes
 
 **Server-side data aggregation.** `app/api/vessels/route.ts` is a Next.js Route Handler that fans out two parallel requests to Digitraffic — one for live AIS *positions* (revalidated every 30s) and one for vessel *metadata* (revalidated every hour, since ship names/destinations barely change) — then merges them by MMSI into a single GeoJSON `FeatureCollection`. This is the right call: it keeps the metadata request cheap and cached while positions stay fresh, and it means the client never has to do the join itself.
 

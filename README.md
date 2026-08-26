@@ -45,12 +45,6 @@ The dashboard covers:
 
 **Context-driven cross-page state.** A `VesselProvider` context holds the selected vessel and a `mapRef` so that clicking a row in the vessel table (a sibling component, not a parent) can fly the shared map to that ship and populate the detail panel — without prop drilling through the dashboard layout.
 
-## Known rough edges (fix these before a recruiter clones it)
-
-- **`app/page.tsx` (the `/` route) is still the untouched `create-next-app` boilerplate.** The actual dashboard lives at `/ui/dashboard`. Right now, anyone who opens the root URL sees the default Next.js splash page instead of your product. This is a 5-minute fix: either redirect `/` → `/ui/dashboard`, or move the dashboard route tree up to root.
-- Route naming (`/ui/dashboard/...`) exposes an implementation detail (`ui`) in the URL. Consider `/dashboard/...` instead.
-- Several files (`vessel-context.tsx`, `VesselMap.tsx`) use `any` with `eslint-disable` rather than typed AIS/GeoJSON interfaces. Fine for a fast build; worth tightening if this becomes your flagship piece — type the Digitraffic response shapes once and reuse them.
-- No loading/error UI is described for the case where Digitraffic itself is down or rate-limits you — the `/api/vessels` route just returns a 500 with a generic message.
 
 ## Getting started
 

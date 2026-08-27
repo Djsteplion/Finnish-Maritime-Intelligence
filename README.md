@@ -1,13 +1,17 @@
-# 🚢 Finnish Maritime Intelligence (F.M.I.)
+# 🚢 Finnish Marine Intelligence (F.M.I.)
 
 A real-time maritime traffic intelligence dashboard built on **official Finnish government AIS data** (Fintraffic / Digitraffic). Tracks live vessel positions, icebreaker operations, port activity, and fleet analytics across Finnish waters.
 
 > Live demo: https://fmi-dashboard.netlify.app/ui/dashboard
+
+> Pitch: 
+https://fmi-board.netlify.app/
+
 > Screenshots: 
 <img src="assets\Screenshot 2026-08-26 224729.png" alt="image showing half of the dashboard page" width="500">
 <img src="assets\Screenshot 2026-08-26 224832.png" alt="image showing the location of a selected vessel on the map" width="500">
-<img src="aassets\Screenshot 2026-08-26 224905.png" alt="Descriptive Alt Text" width="500">
-<img src="assets\Screenshot 2026-08-26 224940.png" alt="Descriptive Alt Text" width="500">
+<img src="assets\Screenshot 2026-08-26 224905.png" alt="image showing more details abiout the selected vessel" width="500">
+<img src="assets\Screenshot 2026-08-26 224940.png" alt="image showing the top half of the analytics page" width="500">
 
 
 ---
@@ -39,9 +43,9 @@ The dashboard covers:
 
 ## Architecture notes
 
-**Server-side data aggregation.** `app/api/vessels/route.ts` is a Next.js Route Handler that fans out two parallel requests to Digitraffic — one for live AIS *positions* (revalidated every 30s) and one for vessel *metadata* (revalidated every hour, since ship names/destinations barely change) — then merges them by MMSI into a single GeoJSON `FeatureCollection`. This is the right call: it keeps the metadata request cheap and cached while positions stay fresh, and it means the client never has to do the join itself.
+**Server-side data aggregation.** `app/api/vessels/route.ts` is a Next.js Route Handler that fans out two parallel requests to Digitraffic — one for live AIS *positions* (revalidated every 30s) and one for vessel *metadata* (revalidated every hour, since ship names/destinations barely change) — then merges them by MMSI into a single GeoJSON `FeatureCollection`. It keeps the metadata request cheap and cached while positions stay fresh, and it means the client never has to do the join itself.
 
-**One shared MapLibre instance, not React-Leaflet-per-marker.** Rather than rendering hundreds of DOM marker elements (which chokes with dense AIS traffic), `VesselMap.tsx` draws a single reusable ship sprite onto an off-screen canvas once, registers it as a MapLibre image, and renders every vessel as a single symbol layer bound directly to the `/api/vessels` GeoJSON source. Icon size and rotation are driven by MapLibre style expressions (`interpolate`/`coalesce`) rather than per-marker JS, and the map keeps a light/dark instance pair alive globally instead of re-mounting on theme toggle. This is a deliberate performance decision, not the default approach — worth calling out explicitly in an interview.
+**One shared MapLibre instance, not React-Leaflet-per-marker.** Rather than rendering thousands of DOM marker elements (which chokes with dense AIS traffic), `VesselMap.tsx` draws a single reusable ship sprite onto an off-screen canvas once, registers it as a MapLibre image, and renders every vessel as a single symbol layer bound directly to the `/api/vessels` GeoJSON source. Icon size and rotation are driven by MapLibre style expressions (`interpolate`/`coalesce`) rather than per-marker JS, and the map keeps a light/dark instance pair alive globally instead of re-mounting on theme toggle.
 
 **Context-driven cross-page state.** A `VesselProvider` context holds the selected vessel and a `mapRef` so that clicking a row in the vessel table (a sibling component, not a parent) can fly the shared map to that ship and populate the detail panel — without prop drilling through the dashboard layout.
 

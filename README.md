@@ -2,7 +2,7 @@
 
 A real-time maritime traffic intelligence dashboard built on **official Finnish government AIS data** (Fintraffic / Digitraffic). Tracks live vessel positions, icebreaker operations, port activity, and fleet analytics across Finnish waters.
 
-> Live demo: https://fmi-dashboard.netlify.app/ui/dashboard
+> Live demo: https://fmi-board.netlify.app/ui/dashboard
 
 > Pitch: 
 https://fmi-board.netlify.app/

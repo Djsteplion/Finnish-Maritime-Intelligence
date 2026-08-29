@@ -126,7 +126,7 @@ function PortCongestionMap({
 
           map.addSource('port-vessels', {
             type: 'geojson',
-            data: validVessels,
+            data: validVessels as GeoJSON.FeatureCollection,
           })
 
           map.addLayer({

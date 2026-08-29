@@ -73,5 +73,5 @@ export default function SingleVesselMap({ mmsi }: { mmsi: string }) {
     return () => map.current?.remove();
   }, [mmsi]);
 
-  return <div ref={mapContainer} className="w-full h-full min-h-[300px]" />;
+  return <div ref={mapContainer} className="w-full h-full min-h-75" />;
 }

@@ -13,7 +13,7 @@ export default async function VesselLogPage({
     <div className="min-h-screen bg-slate-950 text-white p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="block md:flex justify-between items-center mb-8">
           <div>
             
             <Link 

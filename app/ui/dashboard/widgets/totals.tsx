@@ -373,7 +373,7 @@ export default function FleetTotals() {
 
   return (
     <>
-      <h2 className="text-[14px] font-black uppercase tracking-[0.05em] text-slate-800 mb-1 md:text-3xl md:mb-10">
+      <h2 className="text-[14px] md:-mt-7 font-black uppercase tracking-[0.05em] text-slate-800 mb-1 md:text-3xl md:mb-8">
         Finnish Marine Intelligence (FMI) Dashboard
       </h2>
 

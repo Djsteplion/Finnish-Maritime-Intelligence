@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     default: "Finnish Maritime Intelligence | Real-Time AIS Vessel Tracking",
     template: "%s | Finnish Maritime Intelligence",
   },
+  icons: {
+    icon: "/favicon.png",
+  },
   description:
     "A real-time maritime intelligence platform for Finnish waters, powered by live AIS data from Fintraffic / Digitraffic. Track vessels, ports, icebreaker operations and fleet analytics.",
   applicationName: "Finnish Maritime Intelligence",

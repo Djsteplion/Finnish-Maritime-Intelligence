@@ -103,7 +103,8 @@ function PortCongestionMap({
           Array.isArray(vessels.features)
         ) {
           const validVessels = {
-            type: 'FeatureCollection',
+            //type: 'FeatureCollection',
+            type: 'any',
             features: vessels.features.filter(
               (vessel: any) => {
                 const coordinates =
